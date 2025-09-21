@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Línea del Tiempo - Flamenco</title>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Roboto&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/vis-timeline/standalone/umd/vis-timeline-graph2d.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+  <link href="https://unpkg.com/vis-timeline/styles/vis-timeline-graph2d.min.css" rel="stylesheet" />
+  <style>
+    body {
+    font-family: 'Merriweather', serif;
+    background-color: #F9F5F0;
+    } 
+
+    #timeline {
+      width: 100%;
+      /*height: 700px;*/
+      border: 0px solid rgba(253, 253, 253, 0);
+      margin-top: 10px;
+    }
+
+    .vis-label {
+      text-align:center !important;
+      display:flex;
+      font-family: 'Merriweather', serif; /* Cambia a la fuente que quieras */
+      font-weight: bold;                   /* Negrita opcional */
+      font-size: 20px;                     /* Tamaño del texto */
+      align-items: center !important;
+      color: #333333;                      /* Color del texto */
+    }
+
+    .controls {
+      margin-bottom: 10px;
+    }
+    .controls label {
+      margin-right: 15px;
+      font-weight: bold;
+    }
+
+    /* Estilos de items */
+    .cantaor { background-color: #8dbbf3;
+      font-family:'Merriweather', serif !important;
+      font-weight: bold;
+      border: 2px solid #000000;  /* borde azul */
+      border-radius: 5px !important;  
+    }
+    .guitarrista { background-color: #f08173; 
+      font-family:'Merriweather', serif !important;
+      font-weight: bold;
+      border: 2px solid #000000;  /* borde azul */
+      border-radius: 5px !important; }
+    .hecho {
+      font-family:'Merriweather', serif !important;
+      font-style: italic;
+      background-color: #FEB21A ; /* fondo semitransparente */
+      border: 1px solid #000000;        /* línea vertical */
+      height: 24px ;                       /* altura suficiente */
+      padding-left: 2px;
+      font-size: 15px;
+    }
+
+    /* Colores de épocas */
+    .carlos-iv { background-color: #ffecc0a6 !important; }
+    .guerra-independencia { background-color: #ffbc92a0 !important; }
+    .fernando-vii { background-color: #ffbaba8f!important; }
+    .epoca-isabelina { background-color: #b969898e !important; }
+    .sexenio { background-color: #ffecc0a6 !important; }
+    .restauracion { background-color: #ffbc92a0 !important; }
+    .segunda-republica { background-color: #ffbaba8f !important; }
+    .guerra-civil { background-color: #b969898e !important; }
+    .franquismo { background-color: #ffecc0a6 !important; }
+    .transicion { background-color: #ffbc92a0 !important; }
+    .democracia { background-color: #ffbaba8f !important; }
+  </style>
+</head>
+<body>
+  <h2>Línea del Tiempo: Flamenco</h2>
+  <div class="controls">
+    <label><input type="checkbox" id="chkCantaores" checked> Cantaores</label>
+    <label><input type="checkbox" id="chkGuitarristas" checked> Guitarristas</label>
+    <label><input type="checkbox" id="chkHechos" checked> Hechos históricos</label>
+  </div>
+  <div id="timeline"></div>
+
+  <script>
+    let timeline, items, epocas, cantaoresItems, guitarristasItems, hechosItems, groups;
+
+    function crearTimeline(cantaoresData, guitarristasData, hechosData) {
+      // Obtener todas las regiones
+      const regiones = [...new Set([...cantaoresData, ...guitarristasData].map(c => c.region))];
+
+      // Grupos: regiones + grupo para hechos históricos
+      groups = new vis.DataSet([
+        { id: 9999, content: 'Hechos históricos'},
+        ...regiones.map((prov, index) => ({ id: index + 1, content: prov })),
+        
+      ]);
+
+      // Épocas históricas
+      epocas = [
+        {id: 997, content: 'Carlos IV ', start: '1788-01-01', end: '1808-05-02', type: 'background', className: 'carlos-iv'},
+        {id: 998, content: 'GI', start: '1808-05-02', end: '1814-03-22', type: 'background', className: 'guerra-independencia'},
+        {id: 999, content: 'Fernando VII', start: '1814-03-22', end: '1833-09-29', type: 'background', className: 'fernando-vii'},
+        {id: 1000, content: 'Isabel II', start: '1833-09-29', end: '1868-09-30', type: 'background', className: 'epoca-isabelina'},
+        {id: 1001, content: 'Sexenio democrático', start: '1868-09-30', end: '1874-12-29', type: 'background', className: 'sexenio'},
+        {id: 1002, content: 'Restauración', start: '1874-12-29', end: '1931-04-14', type: 'background', className: 'restauracion'},
+        {id: 1003, content: 'II Rep.', start: '1931-04-14', end: '1936-07-17', type: 'background', className: 'segunda-republica'},
+        {id: 1004, content: 'GC', start: '1936-07-17', end: '1939-04-01', type: 'background', className: 'guerra-civil'},
+        {id: 1005, content: 'Franquismo', start: '1939-04-01', end: '1975-11-20', type: 'background', className: 'franquismo'},
+        {id: 1006, content: 'Transición', start: '1975-11-20', end: '1978-12-06', type: 'background', className: 'transicion'},
+        {id: 1007, content: 'Democracia', start: '1978-12-06', end: '2025-09-21', type: 'background', className: 'democracia'},
+      ];
+
+      cantaoresItems = cantaoresData.map((c, index) => ({
+        id: 'c' + (index + 1),   // ID generado automáticamente
+        content: c.nombre,
+        start: c.start,
+        end: c.end,
+        title: c.detalle,
+        group: regiones.indexOf(c.region) + 1,
+        className: 'cantaor'
+      }));
+
+      guitarristasItems = guitarristasData.map((g, index) => ({
+        id: 'g' + (index + 1),
+        content: g.nombre,
+        start: g.start,
+        end: g.end,
+        title: g.detalle,
+        group: regiones.indexOf(g.region) + 1,
+        className: 'guitarrista'
+      }));
+
+      hechosItems = hechosData.map((h, index) => ({
+        id: 'h' + (index + 1),
+        content: h.hecho,
+        start: h.fecha,
+        title: h.detalle,
+        type: 'box',
+        group: 9999,
+        className: 'hecho',
+        align: 'center'
+      }));
+
+
+      // Combinar todos los items
+      items = new vis.DataSet([...epocas, ...cantaoresItems, ...guitarristasItems, ...hechosItems]);
+
+      const options = {
+        stack: true,
+        showCurrentTime: false,
+        zoomable: true,
+        horizontalScroll: true,
+        orientation: {
+          axis: 'both',  // <- esto muestra la escala arriba y abajo
+          item: 'bottom' // los items siguen en la parte inferior
+        }
+      };
+
+      timeline = new vis.Timeline(document.getElementById('timeline'), items, groups, options);
+
+      // Checkboxes para mostrar/ocultar items
+      document.getElementById('chkCantaores').addEventListener('change', actualizarItems);
+      document.getElementById('chkGuitarristas').addEventListener('change', actualizarItems);
+      document.getElementById('chkHechos').addEventListener('change', actualizarItems);
+    }
+
+    function actualizarItems() {
+      items.clear();
+      items.add(epocas);
+      if (document.getElementById('chkCantaores').checked) items.add(cantaoresItems);
+      if (document.getElementById('chkGuitarristas').checked) items.add(guitarristasItems);
+      if (document.getElementById('chkHechos').checked) items.add(hechosItems);
+    }
+
+    // Cargar CSVs
+    Papa.parse('cantaores.csv', {
+      download: true,
+      header: true,
+      complete: function(cantaores) {
+        Papa.parse('guitarristas.csv', {
+          download: true,
+          header: true,
+          complete: function(guitarristas) {
+            Papa.parse('hechos.csv', {
+              download: true,
+              header: true,
+              complete: function(hechos) {
+                crearTimeline(cantaores.data, guitarristas.data, hechos.data);
+              }
+            });
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
