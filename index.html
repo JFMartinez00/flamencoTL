@@ -60,7 +60,7 @@
             mensaje.style.display = "block";
             form.reset();
           } else {
-            alert("Error al enviar los datos: " + data.message);
+            alert("Error al enviar los datos: " + JSON.stringify(data));
           }
         })
         .catch(err => alert("Error al conectar con Google Sheets: " + err));
