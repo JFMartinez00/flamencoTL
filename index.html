@@ -29,13 +29,14 @@
   </script>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      const form = document.getElementById("cantaorForm");
-      const mensaje = document.getElementById("mensaje");
+      const url = "https://script.google.com/macros/s/AKfycbw7YMOLVdl6fvanPaEEkb6l23g_B9bEjLMgILYjUIhzFVcD0_bYOeUjFq2pKUKWz8Zz/exec";
+      const form = document.forms['cantaorForm'];
+      const successmsg = document.getElementById('successmsg');
+      const errormsg = document.getElementById('errormsg');
 
-      form.addEventListener("submit", function(event) {
-        event.preventDefault(); // evita recargar la página
+      form.addEventListener('submit', e => {
+        e.preventDefault();
 
-        // Aquí recogemos los valores del formulario
         const datos = {
           nombre: form.nombre.value,
           region: form.region.value,
@@ -45,27 +46,31 @@
           contacto: form.contacto.value
         };
 
-        // URL de tu Web App de Google Sheets
-        const url = "https://script.google.com/macros/s/AKfycbw7YMOLVdl6fvanPaEEkb6l23g_B9bEjLMgILYjUIhzFVcD0_bYOeUjFq2pKUKWz8Zz/exec";
+        console.log(datos); // Aquí ves el objeto
 
-        // Enviar los datos al Web App
+
         fetch(url, {
-          method: "POST",
+          method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(datos)
         })
         .then(response => response.json())
         .then(data => {
           if (data.result === "success") {
-            mensaje.style.display = "block";
+            successmsg.hidden = false;
             form.reset();
           } else {
-            alert("Error al enviar los datos: " + JSON.stringify(data));
+            errormsg.hidden = false;
+            console.log(data.message);
           }
         })
-        .catch(err => alert("Error al conectar con Google Sheets: " + err));
+        .catch(error => {
+          errormsg.hidden = false;
+          console.log(error);
+        });
       });
-    });
+
+        })
   </script>
 
 
