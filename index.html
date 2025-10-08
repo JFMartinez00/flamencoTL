@@ -51,6 +51,7 @@
         // Enviar los datos al Web App
         fetch(url, {
           method: "POST",
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(datos)
         })
         .then(response => response.json())
