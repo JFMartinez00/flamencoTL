@@ -29,10 +29,9 @@
   </script>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      const url = "https://script.google.com/macros/s/AKfycbzc0AqB7JYhVAfDkhWzFvTVA72UCWJ8ygzjS3V-2HUBoDnHGUDll7SBX7zhbIyUUX4/exec";
+      const url = "https://script.google.com/macros/s/AKfycby6CRAnh-3eV6sbcwjBfjrp-2OvDIq6WFxG0UbBTSyEderiUhXPuLZtHphFoX7ICt8v/exec";
       const form = document.getElementById('cantaorForm');
-      const successmsg = document.getElementById('successmsg');
-      const errormsg = document.getElementById('errormsg');
+      const mensaje = document.getElementById('mensaje');
 
       form.addEventListener('submit', e => {
         e.preventDefault();
@@ -57,20 +56,21 @@
         .then(response => response.json())
         .then(data => {
           if (data.result === "success") {
-            successmsg.hidden = false;
-            form.reset();
+            mensaje.style.display = "block";   // muestra el mensaje verde
+            form.reset();                      // limpia el formulario
+            setTimeout(() => mensaje.style.display = "none", 5000); // ocúltalo después de 5 seg
           } else {
-            errormsg.hidden = false;
-            console.log(data.message);
+            alert("Hubo un error al enviar los datos. Intenta nuevamente.");
+            console.error(data.message);
           }
         })
         .catch(error => {
-          errormsg.hidden = false;
-          console.log(error);
+          alert("Error de conexión. Revisa tu red o el script de Google.");
+          console.error(error);
         });
       });
 
-        })
+      })
   </script>
 
 
