@@ -27,52 +27,6 @@
       });
     });
   </script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const url = "https://script.google.com/macros/s/AKfycbxeQhGvHAMJKYI6GK-15o7RXJQaRlLdb1NOEw8oVZsQ39gNDSs-ABa4DlA88T-_jdwC/exec";
-      const form = document.getElementById('cantaorForm');
-      const mensaje = document.getElementById('mensaje');
-
-      form.addEventListener('submit', e => {
-        e.preventDefault();
-
-        const datos = {
-          nombre: form.nombre.value,
-          region: form.region.value,
-          inicio: form.inicio.value,
-          fin: form.fin.value,
-          detalle: form.detalle.value,
-          contacto: form.contacto.value
-        };
-
-        console.log(datos); // Aquí ves el objeto
-
-
-        fetch(url, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(datos)
-        })
-        .then(response => response.json())
-        .then(data => {
-          if (data.result === "success") {
-            mensaje.style.display = "block";   // muestra el mensaje verde
-            form.reset();                      // limpia el formulario
-            setTimeout(() => mensaje.style.display = "none", 5000); // ocúltalo después de 5 seg
-          } else {
-            alert("Hubo un error al enviar los datos. Intenta nuevamente.");
-            console.error(data.message);
-          }
-        })
-        .catch(error => {
-          alert("Error de conexión. Revisa tu red o el script de Google.");
-          console.error(error);
-        });
-      });
-
-      })
-  </script>
-
 
   <link href="https://unpkg.com/vis-timeline/styles/vis-timeline-graph2d.min.css" rel="stylesheet" />
   <style>
@@ -249,7 +203,10 @@
     <h2>¡Contribuye!</h2>
     <p>Si conoces algún cantaor que debería aparecer en la línea del tiempo, rellena el siguiente formulario. También puedes usarlo para enviarnos cualquier sugerencia usando el apartado "Comentarios".</p>
 
-    <form id="cantaorForm">
+    <form id="cantaorForm"  
+          action="https://formspree.io/f/mjkaazyj"
+          method="POST">
+
       <label for="nombre">Nombre del artista:</label><br>
       <input type="text" id="nombre" name="nombre"><br><br>
 
