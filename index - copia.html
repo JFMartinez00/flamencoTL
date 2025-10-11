@@ -6,114 +6,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Roboto&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/vis-timeline/standalone/umd/vis-timeline-graph2d.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
-  <script>
-  // Sistema de pestañas general
-    document.addEventListener("DOMContentLoaded", function () {
-      const tabButtons = document.querySelectorAll(".tab-button");
-      const tabContents = document.querySelectorAll(".tab-content");
-
-      tabButtons.forEach(button => {
-        button.addEventListener("click", () => {
-          const targetTab = button.getAttribute("data-tab");
-
-          // Desactivar todas las pestañas
-          tabButtons.forEach(btn => btn.classList.remove("active"));
-          tabContents.forEach(tab => tab.classList.remove("active"));
-
-          // Activar la pestaña y contenido seleccionados
-          button.classList.add("active");
-          document.getElementById(targetTab).classList.add("active");
-        });
-      });
-    });
-  </script>
-
   <link href="https://unpkg.com/vis-timeline/styles/vis-timeline-graph2d.min.css" rel="stylesheet" />
   <style>
-
-    /* ===== ESTILOS DE PESTAÑAS ===== */
-    .tabs {
-      display: flex;
-      margin-bottom: 10px;
-      border-bottom: 2px solid #b89475;
-    }
-
-    .tab-button {
-      background-color: #f4d6b8;
-      border: none;
-      border-right: 1px solid #b89475;
-      padding: 10px 20px;
-      cursor: pointer;
-      font-family: 'Merriweather', serif;
-      font-weight: bold;
-      color: #333;
-      transition: background-color 0.3s;
-    }
-
-    .tab-button:last-child {
-      border-right: none;
-    }
-
-    .tab-button:hover {
-      background-color: #fbe7cf;
-    }
-
-    .tab-button.active {
-      background-color: #ffffff;
-      border-top: 2px solid #b89475;
-      color: #000;
-    }
-
-    .tab-content {
-      display: none;
-      background-color: #ffffff;
-      border: 1px solid #b89475;
-      border-top: none;
-      padding: 20px;
-    }
-
-    .tab-content.active {
-      display: block;
-    }
-
-    /* === Estilos formulario === */
-        form {
-      background-color: #fdf3e7;
-      padding: 15px;
-      border: 1px solid #b89475;
-      border-radius: 10px;
-      max-width: 500px;
-    }
-
-    form label {
-      font-weight: bold;
-      color: #333;
-    }
-
-    form input, form textarea {
-      width: 90%;
-      font-family: 'Roboto', sans-serif;
-      padding: 8px;
-      margin-top: 4px;
-      border: 1px solid #b89475;
-      border-radius: 5px;
-    }
-
-    form button {
-      background-color: #b96989;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    form button:hover {
-      background-color: #944d6b;
-    }
-
-    /* === === */
     body {
     font-family: 'Merriweather', serif;
     background-color: #fcefe0;
@@ -168,7 +62,6 @@
     }
 
     /* Colores de épocas */
-    .carlos-iii { background-color: #b969898e !important; }
     .carlos-iv { background-color: #ffecc0a6 !important; }
     .guerra-independencia { background-color: #ffbc92a0 !important; }
     .fernando-vii { background-color: #ffbaba8f!important; }
@@ -183,55 +76,13 @@
   </style>
 </head>
 <body>
-  <!-- === PESTAÑAS DE NAVEGACIÓN === -->
-  <div class="tabs">
-    <button class="tab-button active" data-tab="timelineTab">Línea del Tiempo</button>
-    <button class="tab-button" data-tab="infoTab">Contribuye</button>
+  <h2>Línea del Tiempo: Flamenco</h2>
+  <div class="controls">
+    <label><input type="checkbox" id="chkCantaores" checked> Cantaores</label>
+    <label><input type="checkbox" id="chkGuitarristas" checked> Guitarristas</label>
+    <label><input type="checkbox" id="chkHechos" checked> Hechos históricos</label>
   </div>
-
-  <!-- === CONTENIDO DE CADA PESTAÑA === -->
-  <div class="tab-content active" id="timelineTab">
-    <h2>Línea</h2>
-    <div class="controls">
-      <label><input type="checkbox" id="chkCantaores" checked> Cantaores</label>
-      <label><input type="checkbox" id="chkGuitarristas" checked> Guitarristas</label>
-      <label><input type="checkbox" id="chkHechos" checked> Hechos históricos</label>
-    </div>
-    <div id="timeline"></div>
-  </div>
-
-  <div class="tab-content" id="infoTab">
-    <h2>¡Contribuye!</h2>
-    <p>Si conoces algún cantaor que debería aparecer en la línea del tiempo, rellena el siguiente formulario. También puedes usarlo para enviarnos cualquier sugerencia usando el apartado "Comentarios".</p>
-
-    <form id="cantaorForm"  
-          action="https://formspree.io/f/mjkaazyj"
-          method="POST">
-
-      <label for="nombre">Nombre del artista:</label><br>
-      <input type="text" id="nombre" name="nombre"><br><br>
-
-      <label for="region">Lugar de nacimiento:</label><br>
-      <input type="text" id="region" name="region"><br><br>
-
-      <label for="inicio">Fecha de nacimiento:</label><br>
-      <input type="date" id="inicio" name="inicio"><br><br>
-
-      <label for="fin">Fecha de fallecimiento:</label><br>
-      <input type="date" id="fin" name="fin"><br><br>
-
-      <label for="detalle">Comentarios:</label><br>
-      <textarea id="detalle" name="detalle" rows="4" cols="50"></textarea><br><br>
-
-      <label for="contacto">Tu nombre o contacto (opcional):</label><br>
-      <input type="text" id="contacto" name="contacto"><br><br>
-
-      <button type="submit">Enviar información</button>
-    </form>
-
-    <p id="mensaje" style="display:none; color: green; font-weight: bold;">¡Gracias por tu aportación!</p>
-  </div>
-
+  <div id="timeline"></div>
 
   <script>
     let timeline, items, epocas, cantaoresItems, guitarristasItems, hechosItems, groups;
@@ -249,8 +100,7 @@
 
       // Épocas históricas
       epocas = [
-        {id: 996, content: 'Carlos III ', start: '1716-01-20', end: '1788-12-14', type: 'background', className: 'carlos-iii'},
-        {id: 997, content: 'Carlos IV ', start: '1788-12-14', end: '1808-05-02', type: 'background', className: 'carlos-iv'},
+        {id: 997, content: 'Carlos IV ', start: '1788-01-01', end: '1808-05-02', type: 'background', className: 'carlos-iv'},
         {id: 998, content: 'GI', start: '1808-05-02', end: '1814-03-22', type: 'background', className: 'guerra-independencia'},
         {id: 999, content: 'Fernando VII', start: '1814-03-22', end: '1833-09-29', type: 'background', className: 'fernando-vii'},
         {id: 1000, content: 'Isabel II', start: '1833-09-29', end: '1868-09-30', type: 'background', className: 'epoca-isabelina'},
@@ -299,10 +149,6 @@
       items = new vis.DataSet([...epocas, ...cantaoresItems, ...guitarristasItems, ...hechosItems]);
 
       const options = {
-        start: '1749-01-01',
-        end: '2025-01-01',
-        min: '1716-01-20',
-        max: '2026-10-11',
         stack: true,
         showCurrentTime: false,
         zoomable: true,
