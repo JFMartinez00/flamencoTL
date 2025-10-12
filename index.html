@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Línea del Tiempo - Flamenco</title>
+  <title>Línea del Tiempo</title>
   <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Roboto&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/vis-timeline/standalone/umd/vis-timeline-graph2d.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
@@ -32,6 +32,9 @@
   <style>
 
     /* ===== ESTILOS DE PESTAÑAS ===== */
+
+
+
     .tabs {
       display: flex;
       margin-bottom: 10px;
@@ -127,6 +130,26 @@
       transform-origin: top left;
     }
 
+    #infoTab {
+      max-width: 800px;   /* límite del ancho de la zona de texto */
+      margin-left: 40 px;     
+      margin-right: auto;
+      padding: 20px;      /* deja espacio interior */
+      line-height: 1.6;   /* mejora la legibilidad */
+      font-size: 1rem;    /* tamaño de texto cómodo */
+      text-align: justify;
+    }
+
+    #contactTab {
+      max-width: 800px;   /* límite del ancho de la zona de texto */
+      margin-left: 40 px;     
+      margin-right: auto;
+      padding: 20px;      /* deja espacio interior */
+      line-height: 1.6;   /* mejora la legibilidad */
+      font-size: 1rem;    /* tamaño de texto cómodo */
+      text-align: justify;
+    }
+
     .vis-label {
       text-align:center !important;
       display:flex;
@@ -186,13 +209,15 @@
   <!-- === PESTAÑAS DE NAVEGACIÓN === -->
   <div class="tabs">
     <button class="tab-button active" data-tab="timelineTab">Línea del Tiempo</button>
-    <button class="tab-button" data-tab="infoTab">Contribuye</button>
+    <button class="tab-button" data-tab="infoTab">Qué es esto</button>
+    <button class="tab-button" data-tab="contactTab">Contribuye</button>
   </div>
 
   <!-- === CONTENIDO DE CADA PESTAÑA === -->
   <div class="tab-content active" id="timelineTab">
-    <h2>Línea</h2>
+    <h2>Línea del tiempo</h2>
     <div class="controls">
+      <label>Elige lo que quieres ver: </label>
       <label><input type="checkbox" id="chkCantaores" checked> Cantaores</label>
       <label><input type="checkbox" id="chkGuitarristas" checked> Guitarristas</label>
       <label><input type="checkbox" id="chkHechos" checked> Hechos históricos</label>
@@ -200,9 +225,9 @@
     <div id="timeline"></div>
   </div>
 
-  <div class="tab-content" id="infoTab">
+  <div class="tab-content" id="contactTab">
     <h2>¡Contribuye!</h2>
-    <p>Si conoces algún cantaor que debería aparecer en la línea del tiempo, rellena el siguiente formulario. También puedes usarlo para enviarnos cualquier sugerencia usando el apartado "Comentarios".</p>
+    <p>Si conoces algún cantaor que debería aparecer en la línea del tiempo, rellena el siguiente formulario. También puedes usarlo para enviarnos cualquier sugerencia usando el apartado de comentarios.</p>
 
     <form id="cantaorForm"  
           action="https://formspree.io/f/mjkaazyj"
@@ -232,6 +257,37 @@
     <p id="mensaje" style="display:none; color: green; font-weight: bold;">¡Gracias por tu aportación!</p>
   </div>
 
+  <div class="tab-content" id="infoTab">
+
+    <h2>Esto qué es</h2>
+    <p>
+      El contenido de esta web no requiere de mucha explicación. Se trata de un proyecto casero para visualizar el rango de vida de los intérpretes flamencos más importantes. 
+      Surgió por mi deseo de situar a cada a uno en su contexto histórico y comprobar fácilmente quién fue contemporáneo a quién.
+    </p>
+    <p>
+      La página permite mostrar u ocultar por separado a cantaores, guitarristas y hechos históricos particulares que considero significativos en la historia del flamenco. 
+      <b>Si posas el ratón sobre los hechos históricos, aparece un texto con más detalle.</b> Mi idea es que esto ocurra también con los artistas, pero llevrá su tiempo.
+    </p>
+    <p>
+      Los intérpretes aparecen clasificados por región de origen. De momento, dicha clasificación la hago en función de la provincia, pero con algunas excepciones para separar lugares con entidad propia, como Jerez. 
+      Soy consciente de que esta forma de clasificar no capta bien todos los matices de la geografía flamenca, pero de algún modo tenía que simplicar.
+    </p>
+    <p>
+      En la línea temporal se encuentran marcadas también las distintas etapas de la historia española por las que discurre la historia conocida del cante.
+      Sin ánimo de rigor histórico, las épocas que he delimitado son: reinados de Carlos III y Carlos IV, Guerra de Independencia, reinados de Isabel II y Fernando VII, Sexenio Democrático, Restauración, Segunda República, Guerra Civil, Franquismo y la actual época democrática.
+      La idea es ser conscientes de qué contextos históricos tuvo que transitar cada intérprete.
+    </p>
+    <h2>A quién he incluido</h2>
+    <p>
+      El único criterio objetivo que estoy siguiendo es el de incluir a artistas que ya hayan fallecido. 
+      A partir de ahí, es evidente que la lista adolece de faltas y sesgos, por ejemplo, la lista de guitarristas incluidos es mucho más pobre que la de cantaores. 
+      La selección de artistas la he hecho tratando de incluir el máximo número posible de cantaores que la afición en general considera esenciales, pero es más que probable que la lista adolezca de notorias ausencias y errores.
+    </p>
+    <p>
+      Puedes ayudarme a subsanar todo ello en la pestaña <b>Contribuye</b>.
+    </p>
+
+  </div>
 
   <script>
     let timeline, items, epocas, cantaoresItems, guitarristasItems, hechosItems, groups;
@@ -300,9 +356,9 @@
 
       const options = {
         start: '1749-01-01',
-        end: '2025-01-01',
+        end: '2030-01-01',
         min: '1716-01-20',
-        max: '2026-10-11',
+        max: '2030-10-11',
         stack: true,
         showCurrentTime: false,
         zoomable: true,
