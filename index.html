@@ -191,18 +191,18 @@
     }
 
     /* Colores de épocas */
-    .carlos-iii { background-color: #b969898e !important; }
-    .carlos-iv { background-color: #ffecc0a6 !important; }
-    .guerra-independencia { background-color: #ffbc92a0 !important; }
-    .fernando-vii { background-color: #ffbaba8f!important; }
-    .epoca-isabelina { background-color: #b969898e !important; }
-    .sexenio { background-color: #ffecc0a6 !important; }
-    .restauracion { background-color: #ffbc92a0 !important; }
-    .segunda-republica { background-color: #ffbaba8f !important; }
-    .guerra-civil { background-color: #b969898e !important; }
-    .franquismo { background-color: #ffecc0a6 !important; }
-    .transicion { background-color: #ffbc92a0 !important; }
-    .democracia { background-color: #ffbaba8f !important; }
+    .carlos-iii { background-color: #b969894e !important; }
+    .carlos-iv { background-color: #ffecc04e !important; }
+    .guerra-independencia { background-color: #ffbc924e !important; }
+    .fernando-vii { background-color: #ffbaba4e!important; }
+    .epoca-isabelina { background-color: #b969894e !important; }
+    .sexenio { background-color: #ffecc04e !important; }
+    .restauracion { background-color: #ffbc924e !important; }
+    .segunda-republica { background-color: #ffbaba4e !important; }
+    .guerra-civil { background-color: #b969894e !important; }
+    .franquismo { background-color: #ffecc04e !important; }
+    .transicion { background-color: #ffbc924e !important; }
+    .democracia { background-color: #ffbaba4e !important; }
   </style>
 </head>
 <body>
@@ -210,7 +210,7 @@
   <div class="tabs">
     <button class="tab-button active" data-tab="timelineTab">Línea del Tiempo</button>
     <button class="tab-button" data-tab="infoTab">Qué es esto</button>
-    <button class="tab-button" data-tab="contactTab">Contribuye</button>
+    <button class="tab-button" data-tab="contactTab">Contacto</button>
   </div>
 
   <!-- === CONTENIDO DE CADA PESTAÑA === -->
@@ -218,16 +218,16 @@
     <h2>Línea del tiempo</h2>
     <div class="controls">
       <label>Elige lo que quieres ver: </label>
-      <label><input type="checkbox" id="chkCantaores" checked> Cantaores</label>
-      <label><input type="checkbox" id="chkGuitarristas" checked> Guitarristas</label>
-      <label><input type="checkbox" id="chkHechos" checked> Hechos históricos</label>
+      <label><input type="checkbox" id="chkCantaores" unchecked> Cantaores</label>
+      <label><input type="checkbox" id="chkGuitarristas" unchecked> Guitarristas</label>
+      <label><input type="checkbox" id="chkHechos" unchecked> Hechos históricos</label>
     </div>
     <div id="timeline"></div>
   </div>
 
   <div class="tab-content" id="contactTab">
-    <h2>¡Contribuye!</h2>
-    <p>Si conoces algún cantaor que debería aparecer en la línea del tiempo, rellena el siguiente formulario. También puedes usarlo para enviarnos cualquier sugerencia usando el apartado de comentarios.</p>
+    <h2>Contacto</h2>
+    <p>Si conoces algún cantaor o guitarrista que debería aparecer en la línea del tiempo, rellena el siguiente formulario. También puedes usarlo para enviarnos cualquier sugerencia usando el apartado de comentarios.</p>
 
     <form id="cantaorForm"  
           action="https://formspree.io/f/mjkaazyj"
@@ -266,7 +266,7 @@
     </p>
     <p>
       La página permite mostrar u ocultar por separado a cantaores, guitarristas y hechos históricos particulares que considero significativos en la historia del flamenco. 
-      <b>Si posas el ratón sobre los hechos históricos, aparece un texto con más detalle.</b> Mi idea es que esto ocurra también con los artistas, pero llevrá su tiempo.
+      <b>Si posas el ratón sobre los hechos históricos, aparece un texto con más detalle.</b> Mi idea es que esto ocurra también con los artistas, pero llevará su tiempo.
     </p>
     <p>
       Los intérpretes aparecen clasificados por región de origen. De momento, dicha clasificación la hago en función de la provincia, pero con algunas excepciones para separar lugares con entidad propia, como Jerez. 
@@ -281,10 +281,10 @@
     <p>
       El único criterio objetivo que estoy siguiendo es el de incluir a artistas que ya hayan fallecido. 
       A partir de ahí, es evidente que la lista adolece de faltas y sesgos, por ejemplo, la lista de guitarristas incluidos es mucho más pobre que la de cantaores. 
-      La selección de artistas la he hecho tratando de incluir el máximo número posible de cantaores que la afición en general considera esenciales, pero es más que probable que la lista adolezca de notorias ausencias y errores.
+      La selección de estos la he hecho tratando de incluir el máximo número posible de cantaores que la afición en general considera esenciales, pero es más que probable que la lista adolezca de notorias ausencias y errores.
     </p>
     <p>
-      Puedes ayudarme a subsanar todo ello en la pestaña <b>Contribuye</b>.
+      Puedes ayudarme a subsanar todo ello en la pestaña <b>Contacto</b>.
     </p>
 
   </div>
@@ -361,8 +361,13 @@
         max: '2030-10-11',
         stack: true,
         showCurrentTime: false,
-        zoomable: true,
+        orientation: 'top',
+        zoomable: false,
         horizontalScroll: true,
+        verticalScroll: true,
+        maxHeight:900,
+        width:'100%',
+        autoResize:true,
         orientation: {
           axis: 'both',  // <- esto muestra la escala arriba y abajo
           item: 'bottom' // los items siguen en la parte inferior
@@ -399,6 +404,7 @@
               header: true,
               complete: function(hechos) {
                 crearTimeline(cantaores.data, guitarristas.data, hechos.data);
+                actualizarItems()
               }
             });
           }
