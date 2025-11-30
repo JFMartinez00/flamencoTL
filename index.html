@@ -210,7 +210,7 @@
 <body>
   <!-- === PESTAÑAS DE NAVEGACIÓN === -->
   <div class="tabs">
-    <button class="tab-button active" data-tab="timelineTab">Línea del Tiempo</button>
+    <button class="tab-button active" data-tab="timelineTab">Línea del tiempo</button>
     <button class="tab-button" data-tab="infoTab">Información</button>
     <button class="tab-button" data-tab="contactTab">Contacto</button>
   </div>
@@ -229,11 +229,14 @@
 
   <div class="tab-content" id="contactTab">
     <h2>Contacto</h2>
-    <p>En el siguiente formulario puedes enviarme información sobre cualquier artista que crees que debería haber incluido, o simplemente puedes usar la caja de comentarios para enviarme cualquier sugerencia o avisarme de algún error que hayas detectado.</p>
+    <p>En el siguiente formulario puedes enviarme información sobre cualquier artista que creas que se debería incluir en la línea del tiempo, o simplemente puedes usar la caja de comentarios para enviarme cualquier sugerencia.</p>
 
     <form id="cantaorForm"  
           action="https://formspree.io/f/mjkaazyj"
           method="POST">
+
+      <label for="detalle">Comentarios o sugerencias:</label><br>
+      <textarea id="detalle" name="detalle" rows="4" cols="50"></textarea><br><br>
 
       <label for="nombre">Nombre del artista:</label><br>
       <input type="text" id="nombre" name="nombre"><br><br>
@@ -246,9 +249,6 @@
 
       <label for="fin">Fecha de fallecimiento:</label><br>
       <input type="date" id="fin" name="fin"><br><br>
-
-      <label for="detalle">Comentarios:</label><br>
-      <textarea id="detalle" name="detalle" rows="4" cols="50"></textarea><br><br>
 
       <label for="contacto">Tu nombre o contacto (opcional):</label><br>
       <input type="text" id="contacto" name="contacto"><br><br>
@@ -263,30 +263,33 @@
 
     <h2>Información</h2>
     <p>
-      Esta web es un proyecto casero para visualizar el rango de vida de los intérpretes flamencos más importantes. 
+      Esta web es un proyecto casero para visualizar en una <b>línea del tiempo</b> el rango de vida de los intérpretes flamencos más importantes. 
       Surgió por mi deseo de situar a cada a uno en su contexto histórico y poder comprobar de un vistazo quién fue contemporáneo a quién.
     </p>
+    <h3>Contenido y funciones</h3>
     <p>
       La página permite mostrar u ocultar por separado a cantaores, guitarristas y hechos históricos particulares que considero significativos en la historia del flamenco. 
-      <b>Si posas el ratón sobre los hechos históricos, aparece un texto con más detalle.</b> Mi idea es que esto ocurra también con los artistas, pero llevará su tiempo.
+      <b>Si posas el ratón sobre los hechos históricos, aparece un texto explicativo con más detalle.</b> Mi idea es que esto ocurra también con los artistas, pero llevará su tiempo.
     </p>
     <p>
-      Los intérpretes aparecen clasificados por región de origen. De momento, dicha clasificación la hago en función de la provincia, pero con algunas excepciones para separar lugares con entidad propia, como Jerez. 
-      Soy consciente de que esta forma de clasificar no capta bien todos los matices de la geografía flamenca, pero de algún modo tenía que simplicar.
-    </p>
-    <p>
-      En la línea temporal se encuentran marcadas también las distintas etapas de la historia española por las que discurre la historia conocida del cante.
+      En la línea temporal se encuentran marcadas distintas etapas de la historia española.
       Sin ánimo de rigor histórico, las épocas que he delimitado son: reinados de Carlos III y Carlos IV, Guerra de Independencia, reinados de Isabel II y Fernando VII, Sexenio Democrático, Restauración, Segunda República, Guerra Civil, Franquismo y la actual época democrática.
-      La idea es ser conscientes de qué contextos históricos tuvo que transitar cada intérprete.
+      La idea es tenerlas de referencia para ser conscientes de qué contexto histórico tuvo que vivir cada intérprete.
     </p>
-    <h2>A quién he incluido</h2>
+    <h3>A quién se ha incluido</h3>
     <p>
-      El único criterio objetivo que estoy siguiendo es el de incluir a artistas que ya hayan fallecido. 
-      A partir de ahí, es evidente que la lista adolece de faltas y sesgos. Por ejemplo, la lista de guitarristas incluidos es mucho más pobre que la de cantaores. 
-      La selección la he hecho tratando de incluir el máximo número posible de artistas que la afición en general considera esenciales, pero seguro que faltan muchos.
+      De momento, el único criterio objetivo que estoy siguiendo es el de incluir a artistas que ya hayan fallecido y cuyos años de nacimiento y muerte sean conocidos. 
+      A partir de ahí, intento ser lo más completo posible, yendo más allá de gustos personales, pero la lista puede tener ausencias y sesgos que iré tratando de solventar. Por ejemplo, de momento la lista de guitarristas incluidos es mucho más pobre que la de cantaores. 
     </p>
+    <h3>Organización por regiones</h3>
     <p>
-      En el apartado de <b>Contacto</b> puedes mandarme cualquier comentario para ayudarme a mejorar la página, o directamente enviarme la información de cualquier cantaor o guitarrista que pienses que debería añadir.
+      Los intérpretes aparecen clasificados por región de origen. De momento, dicha clasificación la hago aproximadamente en función de la provincia, pero con algunas excepciones para separar lugares con entidad propia, como Jerez. 
+      Soy consciente de que esta forma de clasificar no capta bien todos los matices de la geografía flamenca, pero de algún modo tenía que simplicar para empezar.
+    </p>
+
+    <h3>Sugerencias</h3>
+    <p>
+      En el apartado de <b>Contacto</b> puedes mandarme cualquier comentario para ayudarme a mejorar la página, o directamente enviarme información de cualquier cantaor o guitarrista que pienses que debería añadir.
     </p>
 
   </div>
