@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>El cante a través del tiempo</title>
+  <link rel="icon" href="/silla.ico">
   <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Roboto&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/vis-timeline/standalone/umd/vis-timeline-graph2d.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
@@ -204,7 +205,7 @@
     .guerra-civil { background-color: #efb3666c !important; }
     .franquismo { background-color:  #ee89596c!important; }
     .transicion { background-color: #f4a2616c !important; }
-    .democracia { background-color: #e97c616c !important; }
+    /*.democracia { background-color: #e97c616c !important; }*/
   </style>
 </head>
 <body>
@@ -319,9 +320,9 @@
         {id: 1002, content: 'Restauración', start: '1874-12-29', end: '1931-04-14', type: 'background', className: 'restauracion'},
         {id: 1003, content: 'II Rep.', start: '1931-04-14', end: '1936-07-17', type: 'background', className: 'segunda-republica'},
         {id: 1004, content: 'GC', start: '1936-07-17', end: '1939-04-01', type: 'background', className: 'guerra-civil'},
-        {id: 1005, content: 'Franquismo', start: '1939-04-01', end: '1975-11-20', type: 'background', className: 'franquismo'},
-        {id: 1006, content: 'Transición', start: '1975-11-20', end: '1978-12-06', type: 'background', className: 'transicion'},
-        {id: 1007, content: 'Democracia', start: '1978-12-06', end: '2025-09-21', type: 'background', className: 'democracia'},
+        {id: 1005, content: 'Franquismo', start: '1939-04-01', end: '1978-12-06', type: 'background', className: 'franquismo'},
+        {id: 1006, content: 'Democracia', start: '1978-12-06', end: '2026-01-31', type: 'background', className: 'transicion'},
+        /*{id: 1007, content: 'Democracia', start: '1978-12-06', end: '2025-09-21', type: 'background', className: 'democracia'},*/
       ];
 
       cantaoresItems = cantaoresData.map((c, index) => ({
