@@ -117,6 +117,20 @@
       background-color: #944d6b;
     }
 
+    .btn {
+      background-color: #b96989;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .btn:hover {
+      background-color: #944d6b;
+    }
+
     /* === === */
     body {
     font-family: 'Merriweather', serif;
@@ -193,6 +207,25 @@
       font-size: 15px;
     }
 
+
+    .share-box {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-top: 10px;
+      max-width: 300px;   /* ajusta esto a tu gusto */
+    }
+
+    .share-box input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #b89475;
+      border-radius: 8px;
+      font-family: 'Roboto', sans-serif;
+      background-color: #fdf3e7;
+      color: #333;
+    }
+
     /* Colores de épocas */
     .carlos-iii { background-color: #efb4666c!important; }
     .carlos-iv { background-color: #ee89596c !important; }
@@ -230,15 +263,17 @@
 
   <div class="tab-content" id="contactTab">
     <h2>Contacto</h2>
-    <p>En el siguiente formulario puedes enviarme información sobre cualquier artista que creas que se debería incluir en la línea del tiempo, o simplemente puedes usar la caja de comentarios para enviarme cualquier sugerencia.</p>
 
+    <!--
+    <p>En el siguiente formulario puedes enviarme información sobre cualquier artista que creas que se debería incluir en la línea del tiempo, o simplemente puedes usar la caja de comentarios para enviarme cualquier sugerencia.</p>
+  -->
     <form id="cantaorForm"  
           action="https://formspree.io/f/mjkaazyj"
           method="POST">
 
       <label for="detalle">Comentarios o sugerencias:</label><br>
       <textarea id="detalle" name="detalle" rows="4" cols="50"></textarea><br><br>
-
+<!--
       <label for="nombre">Nombre del artista:</label><br>
       <input type="text" id="nombre" name="nombre"><br><br>
 
@@ -250,12 +285,30 @@
 
       <label for="fin">Fecha de fallecimiento:</label><br>
       <input type="date" id="fin" name="fin"><br><br>
+  -->
 
       <label for="contacto">Tu nombre o contacto (opcional):</label><br>
       <input type="text" id="contacto" name="contacto"><br><br>
 
-      <button type="submit">Enviar información</button>
+      <button type="submit">Enviar</button>
     </form>
+
+
+    <h2>Compartir</h2>
+
+    <div class="share-box">
+      <input id="shareLink" type="text" readonly value="flamencotl.netlify.app">
+      <button class="btn" type="button" onclick="copiarLink()">Copiar enlace</button>
+    </div>
+
+    <script>
+      function copiarLink() {
+        navigator.clipboard.writeText(window.location.href)
+          .then(() => alert("Enlace copiado al portapapeles ✅"))
+          .catch(() => alert("No se pudo copiar el enlace ❌"));
+      }
+    </script>
+
 
     <p id="mensaje" style="display:none; color: green; font-weight: bold;">¡Gracias por tu aportación!</p>
   </div>
