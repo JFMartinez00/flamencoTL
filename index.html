@@ -350,6 +350,47 @@
 
   <script>
     let timeline, items, epocas, cantaoresItems, guitarristasItems, hechosItems, groups;
+    const samplePlayer = new Audio();
+    let artistaEnReproduccion = null;
+    const fallbackAudioByArtist = {
+      // "Camaron de la Isla": "audio/camaron.mp3",
+      // "Enrique Morente": "audio/morente.mp3"
+    };
+
+    function normalizarNombre(nombre) {
+      return (nombre || "")
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/["']/g, "")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    function reproducirMuestra(item) {
+      if (!item) return;
+      if (item.className !== "cantaor" && item.className !== "guitarrista") return;
+
+      const nombre = item.content || "";
+      const audioUrl = item.audio || fallbackAudioByArtist[nombre] || fallbackAudioByArtist[normalizarNombre(nombre)];
+      if (!audioUrl) return;
+
+      const isPlaying = !samplePlayer.paused && !samplePlayer.ended && samplePlayer.currentTime > 0;
+      if (artistaEnReproduccion === item.id && isPlaying) {
+        samplePlayer.pause();
+        samplePlayer.currentTime = 0;
+        artistaEnReproduccion = null;
+        return;
+      }
+
+      samplePlayer.pause();
+      samplePlayer.src = audioUrl;
+      samplePlayer.currentTime = 0;
+      samplePlayer.play().catch((err) => {
+        console.warn("No se pudo reproducir el audio:", err);
+      });
+      artistaEnReproduccion = item.id;
+    }
 
     function crearTimeline(cantaoresData, guitarristasData, hechosData) {
       // Obtener todas las regiones
@@ -384,6 +425,7 @@
         start: c.start,
         end: c.end,
         title: c.detalle,
+        audio: c.audio,
         group: regiones.indexOf(c.region) + 1,
         className: 'cantaor'
       }));
@@ -394,6 +436,7 @@
         start: g.start,
         end: g.end,
         title: g.detalle,
+        audio: g.audio,
         group: regiones.indexOf(g.region) + 1,
         className: 'guitarrista'
       }));
@@ -434,6 +477,11 @@
       };
 
       timeline = new vis.Timeline(document.getElementById('timeline'), items, groups, options);
+      timeline.on('click', function (props) {
+        if (!props.item) return;
+        const selectedItem = items.get(props.item);
+        reproducirMuestra(selectedItem);
+      });
 
       // Checkboxes para mostrar/ocultar items
       document.getElementById('chkCantaores').addEventListener('change', actualizarItems);
@@ -473,3 +521,5 @@
   </script>
 </body>
 </html>
+
+

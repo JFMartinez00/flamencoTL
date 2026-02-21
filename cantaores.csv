@@ -1,4 +1,4 @@
-nombre,start,end,region,detalle
+nombre,start,end,region,detalle,audio
 Tío Luis el de la Juliana,1750-01-01,1830-01-01,Jerez,
 Antonio Monge "El Planeta",01-01-1789,01-01-1856,Cádiz,
 El Fillo,1806-01-01,1854-02-04,Cádiz,
@@ -68,7 +68,7 @@ Antonio Mairena,1909-07-07,1973-02-24,Sevilla,
 Manolo Caracol,1909-09-07,1983-09-05,Sevilla,
 Joselero de Morón,1910-01-01,1985-01-01,Sevilla,
 Rafaela "La Bolola",01-01-1910,01-01-1984,Jerez,
-Tío Gregorio "el Borrico",1910-01-01,1983-12-05,Jerez,
+Tío Gregorio "el Borrico",1910-01-01,1983-12-05,Jerez,"",audios/borrico.mp3
 Rafael Romero,1910-10-09,1991-01-04,Jaén,
 Pepe "el Culata", 01-01-1911,01-01-1978,Sevilla,
 Antonio Piñana,1913-01-16,1989-11-16,Región de Murcia,
