@@ -184,6 +184,10 @@
       margin-right: 15px;
       font-weight: bold;
     }
+    .audio-hint {
+      font-style: italic;
+      color: #262626;
+    }
 
     /* Estilos de items */
     .cantaor { background-color: #b7dde4;
@@ -191,6 +195,13 @@
       font-weight: bold;
       border: 2px solid #4b5b5e;  /* borde azul */
       border-radius: 5px !important;  
+    }
+    .cantaor-audio {
+      border:4px solid #000000 !important;
+      /*box-shadow: 0 0 0 2px #000000, 0 0 0 0px #d3a2b8;
+      text-decoration: underline;
+      text-decoration-style: dotted;*/
+      cursor: pointer;
     }
     .guitarrista { background-color: #cee2be; 
       font-family:'Merriweather', serif !important;
@@ -257,6 +268,8 @@
       <label><input type="checkbox" id="chkCantaores" unchecked> Cantaores</label>
       <label><input type="checkbox" id="chkGuitarristas" unchecked> Guitarristas</label>
       <label><input type="checkbox" id="chkHechos" unchecked> Hechos históricos</label>
+      <br>
+      <span class="audio-hint">Cantaores resaltados: clica para escuchar su voz.</span>
     </div>
     <div id="timeline"></div>
   </div>
@@ -367,12 +380,22 @@
         .trim();
     }
 
+    function tieneAudio(rutaAudio) {
+      return !!(rutaAudio && rutaAudio.trim());
+    }
+
+    function tieneClase(item, clase) {
+      return (item.className || "").split(/\s+/).includes(clase);
+    }
+
     function reproducirMuestra(item) {
       if (!item) return;
-      if (item.className !== "cantaor" && item.className !== "guitarrista") return;
+      if (!tieneClase(item, "cantaor") && !tieneClase(item, "guitarrista")) return;
 
       const nombre = item.content || "";
-      const audioUrl = item.audio || fallbackAudioByArtist[nombre] || fallbackAudioByArtist[normalizarNombre(nombre)];
+      const audioUrl = (tieneAudio(item.audio) ? item.audio : null)
+        || fallbackAudioByArtist[nombre]
+        || fallbackAudioByArtist[normalizarNombre(nombre)];
       if (!audioUrl) return;
 
       const isPlaying = !samplePlayer.paused && !samplePlayer.ended && samplePlayer.currentTime > 0;
@@ -427,7 +450,7 @@
         title: c.detalle,
         audio: c.audio,
         group: regiones.indexOf(c.region) + 1,
-        className: 'cantaor'
+        className: tieneAudio(c.audio) ? 'cantaor cantaor-audio' : 'cantaor'
       }));
 
       guitarristasItems = guitarristasData.map((g, index) => ({
