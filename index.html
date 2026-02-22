@@ -269,7 +269,7 @@
       <label><input type="checkbox" id="chkGuitarristas" unchecked> Guitarristas</label>
       <label><input type="checkbox" id="chkHechos" unchecked> Hechos históricos</label>
       <br>
-      <span class="audio-hint">Cantaores resaltados: clica para escuchar su voz.</span>
+      <span class="audio-hint">Cantaores resaltados: clica para escuchar su voz (vuelve a clicar para parar el audio).</span>
     </div>
     <div id="timeline"></div>
   </div>
@@ -336,7 +336,7 @@
     <h3>Contenido y funciones</h3>
     <p>
       La página permite mostrar u ocultar por separado a cantaores, guitarristas y hechos históricos particulares que considero significativos en la historia del flamenco. 
-      <b>Si posas el ratón sobre los hechos históricos, aparece un texto explicativo con más detalle.</b> Mi idea es que esto ocurra también con los artistas, pero llevará su tiempo.
+      <b>Al posar sobre los hechos históricos, aparece un texto explicativo con más detalle. Si haces click sobre algunos cantaores (resaltados en negro), escucharás una muestra de su voz.</b>
     </p>
     <p>
       En la línea temporal se encuentran marcadas distintas etapas de la historia española.
@@ -438,7 +438,7 @@
         {id: 1003, content: 'II Rep.', start: '1931-04-14', end: '1936-07-17', type: 'background', className: 'segunda-republica'},
         {id: 1004, content: 'GC', start: '1936-07-17', end: '1939-04-01', type: 'background', className: 'guerra-civil'},
         {id: 1005, content: 'Franquismo', start: '1939-04-01', end: '1978-12-06', type: 'background', className: 'franquismo'},
-        {id: 1006, content: 'Democracia', start: '1978-12-06', end: '2026-01-31', type: 'background', className: 'transicion'},
+        {id: 1006, content: 'Democracia', start: '1978-12-06', end: '2027-01-01', type: 'background', className: 'transicion'},
         /*{id: 1007, content: 'Democracia', start: '1978-12-06', end: '2025-09-21', type: 'background', className: 'democracia'},*/
       ];
 
@@ -481,9 +481,9 @@
 
       const options = {
         start: '1749-01-01',
-        end: '2030-01-01',
+        end: '2027-01-01',
         min: '1716-01-20',
-        max: '2030-10-11',
+        max: '2027-01-01',
         stack: true,
         showCurrentTime: false,
         orientation: 'top',
