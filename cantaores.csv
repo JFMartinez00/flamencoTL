@@ -42,13 +42,13 @@ Pepe el de la Matrona,1887-07-04,1980-08-08,Sevilla,"",audios/matrona.mp3
 Pepe Torres,1887-01-01,1970-01-01,Jerez,"",audios/pepetorres.mp3
 Aurelio Sellés,1887-11-04,1974-09-19,Cádiz,"",audios/aurelio.mp3
 José Cepero,1888-01-01,1960-03-13,Jerez,
-Pastora Pavón,1890-02-10,1969-11-16,Sevilla,
+Pastora Pavón,1890-02-10,1969-11-16,Sevilla,"",audios/ninadelospeines.mp3
 Manuel Vallejo,1891-10-15,1960-08-07,Sevilla,"",audios/vallejo.mp3
-Juan Talega,1891-12-12,1971-07-31,Sevilla,
+Juan Talega,1891-12-12,1971-07-31,Sevilla,"",audios/talega.mp3
 Juanito Mojama,1892-01-01,1957-01-01,Jerez,"",audios/mojama.mp3
 Onofre,1893-01-01,1972-01-01,Córdoba,
-Niño Gloria,1893-01-01,1954-01-01,Jerez,
-Tomás Pavón,1893-02-16,1952-07-02,Sevilla,
+Niño Gloria,1893-01-01,1954-01-01,Jerez,"",audios/gloria.mp3
+Tomás Pavón,1893-02-16,1952-07-02,Sevilla,"",audios/tomaspavon.mp3
 Isabelita de Jerez,1895-01-01,1942-01-01,Jerez,
 José Rebollo,1895-01-01,1938-01-01,Huelva,
 Paco Isidro,1896-03-06,1960-07-02,Huelva,
@@ -57,7 +57,7 @@ Tía Anica "la Piriñaca",1899-04-11,1987-11-04,Jerez,"",audios/pirinaca.mp3
 Pericón de Cádiz,1901-09-20,1980-11-22,Cádiz,
 El Chozas,1903-01-01,1974-01-01,Jerez,
 Pepe Pinto,1903-07-22,1969-11-06,Sevilla,
-Pepe Marchena,1903-11-07,1976-12-04,Sevilla,
+Pepe Marchena,1903-11-07,1976-12-04,Sevilla,"",audios/marchena.mp3
 Manuel Fernández "Tío Parrilla",1904-01-01,1980-01-01,Jerez,
 Manolito el de María,1904-07-14,1965-01-01,Sevilla,
 Antonio Rengel,1904-08-27,1961-01-19,Huelva,
@@ -82,10 +82,10 @@ Fernanda de Utrera,1923-02-09,2006-08-24,Sevilla,"",audios/fernanda.mp3
 Rafael Farina,1923-06-02,1995-11-21,Salamanca,
 Porrina de Badajoz,1924-01-13,1977-02-18,Extremadura,
 La Perla de Cádiz,1924-06-09,1975-09-14,Cádiz,"",audios/perla.mp3
-Pencho Cros,1927-01-01,2007-10-26,Región de Murcia,
+Pencho Cros,1927-01-01,2007-10-26,Región de Murcia,"",audios/pencho.mp3
 Bernarda de Utrera,1927-03-03,2009-10-28,Sevilla,
 Manuel Soto "el Sordera",1927-10-27,2001-06-24,Jerez,"",audios/sordera.mp3
-Chano Lobato,1927-12-07,2009-04-05,Cádiz,
+Chano Lobato,1927-12-07,2009-04-05,Cádiz,"",audios/chano.mp3
 Paco Toronjo,1928-06-13,1998-07-02,Huelva,"",audios/toronjo.mp3
 Beni de Cádiz,1930-01-26,1992-12-22,Cádiz,
 Arturo Pavón,1930-09-27,2005-06-06,Sevilla,
@@ -95,7 +95,7 @@ Antonio Fernández Díaz "Fosforito",1932-08-03,2025-11-13,Córdoba,
 Naranjito de Triana,1933-01-01,2002-01-01,Sevilla,"",audios/naranjito.mp3
 Manuel "Agujetas",1933-06-16,2015-12-25,Jerez,
 Fernando "Terremoto",1934-03-17,1981-09-06,Jerez,
-La Paquera,1934-05-20,2004-04-26,Jerez,
+La Paquera,1934-05-20,2004-04-26,Jerez,"",audios/paquera.mp3
 La Repompa,1937-08-15,1959-05-06,Málaga,
 Juan Peña "Lebrijano",1941-08-08,2016-07-13,Sevilla,
 José Menese,1942-12-03,2016-07-29,Sevilla,"",audios/menese.mp3
@@ -103,7 +103,7 @@ Enrique Morente,1942-12-25,2010-12-13,Granada,
 Pansequito,1945-01-08,2023-02-17,Cádiz,
 Canela de San Roque,1947-01-01,2015-08-04,Cádiz,
 Chiquetete,1948-07-26,2018-12-16,Cádiz,
-Camarón de la Isla,1950-12-05,1992-07-02,Cádiz,
+Camarón de la Isla,1950-12-05,1992-07-02,Cádiz,"",audios/camaron.mp3
 Luis de la Pica,1951-07-31,1999-08-07,Jerez,
 Juan Moneo "El Torta",1953-09-04,2013-12-31,Jerez,
 Fernando "Terremoto" Hijo,1969-05-11,2010-02-13,Jerez,
